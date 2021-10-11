@@ -3,6 +3,7 @@ package com.dennisiluma.openweathermap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -10,7 +11,7 @@ import com.dennisiluma.openweathermap.databinding.ActivityDetailsBinding
 import com.dennisiluma.openweathermap.repository.WeatherDetailRepository
 import com.dennisiluma.openweathermap.viewmodel.WeatherDetailViewModelFactory
 import com.dennisiluma.openweathermap.viewmodel.WeatherDetailViewModel
-import dagger.hilt.android.AndroidEntryPoint
+import okhttp3.internal.notify
 
 class DetailsActivity : AppCompatActivity() {
 
@@ -38,22 +39,43 @@ class DetailsActivity : AppCompatActivity() {
                 ViewModelProvider(this, viewModelFactory).get(WeatherDetailViewModel::class.java)
         }
 
-        if(city != null){
-            viewModel.getWeather(city)
+        when(city){
+            "lagos" -> viewModel.getLagosWeather()
+            "kenya" -> viewModel.getKenyaWeather()
+            "cairo" -> viewModel.getCairoWeather()
+            "Abuja" -> viewModel.getAbujaWeather()
+            "new york" -> viewModel.getNYWeather()
+            "texas"-> viewModel.getTexasWeather()
+            "amazon"-> viewModel.getAmazonWeather()
+            "belarus"-> viewModel.getBelarusWeather()
+            "lesotho"-> viewModel.getLesothoWeather()
+            "jakarta"-> viewModel.getJakartaWeather()
+            "ankara"-> viewModel.getAnkaraWeather()
+            "kano"-> viewModel.getKanoWeather()
+            "peru"-> viewModel.getPeruWeather()
+            "winnipeg"-> viewModel.getWinnipegWeather()
+            "bagdad"-> viewModel.getBagdadWeather()
+            "westham"-> viewModel.getWesthamWeather()
         }
 
         binding.tvCityName.text = city
         try {
             viewModel.weatherResponse.observe(this, Observer {
-                Toast.makeText(this, it.name.toString(), Toast.LENGTH_SHORT).show()
-//                binding.tvCityName.text = it.name
-//                val celsius = it.main.temp.toInt() - 273
-//                binding.tvTemperature.text = "$celsius °C"
-//                binding.tvDescription.text = it.weather[0].description
-//                binding.tvClouds.text = it.clouds.all.toString()
-//                binding.tvWindSpeed.text = it.wind.speed.toString()
-//                binding.tvHumidity.text = it.main.humidity.toString()
-//                binding.tvLatLong.text = "Lat: ${it.coord.lat}, Long: ${it.coord.lon}"
+
+                Toast.makeText(this, "succesfully observed", Toast.LENGTH_SHORT).show()
+                binding.tvCityName.text = it.name.replaceFirstChar {
+                    it.uppercaseChar()
+                }
+                val celsius = it.main.temp.toInt() - 273
+                if(celsius % 1 == 0){
+                    binding.progressBar.visibility = View.GONE
+                }
+                binding.tvTemperature.text = "$celsius °C"
+                binding.tvDescription.text = it.weather[0].description
+                binding.tvClouds.text = it.clouds.all.toString()
+                binding.tvWindSpeed.text = it.wind.speed.toString()
+                binding.tvHumidity.text = it.main.humidity.toString()
+                binding.tvLatLong.text = "Lat: ${it.coord.lat}, Long: ${it.coord.lon}"
             })
         } catch (e: Exception) {
             Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show()

@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.dennisiluma.openweathermap.adapter.CityListAdapter
 import com.dennisiluma.openweathermap.databinding.ActivityMainBinding
 import com.dennisiluma.openweathermap.util.DataCountrySource
-import dagger.hilt.android.AndroidEntryPoint
 
 
 class MainActivity : AppCompatActivity() {

@@ -22,7 +22,7 @@ An Android Weather App where you can check weather from list of selected cities.
 8- Retrofit 2
 
 
-#Images
+# Screens
 
 
 ![screenB](https://user-images.githubusercontent.com/64640469/136877513-e451e56c-b7b9-4fd5-aeb2-935f10e6e7d2.png)

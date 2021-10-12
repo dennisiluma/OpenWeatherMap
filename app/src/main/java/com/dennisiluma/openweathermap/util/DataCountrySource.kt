@@ -5,22 +5,10 @@ import com.dennisiluma.openweathermap.model.CityListModel
 class DataCountrySource {
 
     companion object {
-
         fun createDataSet(): ArrayList<CityListModel> {
             val list = ArrayList<CityListModel>()
-
-            list.add(
-                CityListModel(
-                    "lagos",
-                    "https://image.shutterstock.com/image-photo/lagos-island-nigeria-july-2nd-600w-1474779227.jpg"
-                )
-            )
-            list.add(
-                CityListModel(
-                    "kenya",
-                    "https://image.shutterstock.com/image-photo/african-women-woven-wicker-baskets-600w-711980332.jpg"
-                )
-            )
+            list.add(CityListModel("lagos", "https://image.shutterstock.com/image-photo/lagos-island-nigeria-july-2nd-600w-1474779227.jpg"))
+            list.add(CityListModel("kenya", "https://image.shutterstock.com/image-photo/african-women-woven-wicker-baskets-600w-711980332.jpg"))
             list.add(CityListModel("cairo", "https://cdn.pixabay.com/photo/2018/06/16/10/10/pyramid-3478575__480.jpg"))
             list.add(CityListModel("abuja", "https://image.shutterstock.com/image-photo/beautiful-aerial-shot-abuja-metropolitan-600w-1550102267.jpg"))
             list.add(CityListModel("new york", "https://cdn.pixabay.com/photo/2014/07/01/12/35/taxi-381233__340.jpg"))

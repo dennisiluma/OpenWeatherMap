@@ -24,8 +24,7 @@ class CityListAdapter(private var list: ArrayList<CityListModel>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val cityListModel = allList[position]
 
-        holder.listItemLayoutBinding.cityListModel =
-            cityListModel //using databinding to bind the values to the xml
+        holder.listItemLayoutBinding.cityListModel = cityListModel //using dataBinding to bind the values to the xml
 
         holder.itemView.setOnClickListener {
             val intent = Intent(it.context, DetailsActivity::class.java)

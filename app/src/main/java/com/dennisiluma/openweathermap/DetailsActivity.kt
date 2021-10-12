@@ -17,7 +17,7 @@ import com.dennisiluma.openweathermap.viewmodel.WeatherDetailViewModel
 class DetailsActivity : AppCompatActivity() {
 
     lateinit var viewModel: WeatherDetailViewModel
-    private lateinit var city: String
+    private var city: String? = null
     private lateinit var binding: ActivityDetailsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,16 +26,16 @@ class DetailsActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        /*collect intent extra bundle coming from mainActivity*/
+        city = intent.extras!!.getString("city").toString()
+
+        instantiateViewModel() //custom method
         sendWeatherApiRequest() //custom method
         displayWeatherResult() //custom method
-        instantiateViewModel() //custom method
     }
 
     private fun instantiateViewModel(){
-        //collect intent extra bundle coming from mainActivity
-        val incomingCity = intent.extras
-        if (incomingCity != null) { // if there's intent, then proceed
-            city = incomingCity.getString("city").toString()
+        if (city != null) { // if there's intent, then proceed
             val repository = WeatherDetailRepository() //Instantiate the Weather Repository
             val viewModelFactory = WeatherDetailViewModelFactory(repository) // Instantiate ViewModel Factory
             viewModel = ViewModelProvider(this, viewModelFactory).get(WeatherDetailViewModel::class.java) //Instantiate the viewmodel

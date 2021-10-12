@@ -10,15 +10,16 @@
             type="com.dennisiluma.openweathermap.model.CityListModel" />
     </data>
 
-    <androidx.cardview.widget.CardView xmlns:cardview="http://schemas.android.com/apk/res-auto"
+    <androidx.cardview.widget.CardView
+        xmlns:cardview="http://schemas.android.com/apk/res-auto"
         android:id="@+id/cardview_id"
-        android:layout_width="120dp"
-        android:layout_height="190dp"
-        android:layout_margin="5dp"
+        android:layout_width="@dimen/dp_150"
+        android:layout_height="@dimen/dp_190"
+        android:layout_margin="@dimen/dp_5"
         android:clickable="true"
         android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
-        cardview:cardCornerRadius="4dp">
+        cardview:cardCornerRadius="@dimen/dp_4">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,7 +30,7 @@
                 android:id="@+id/country_image"
                 imageUrl="@{cityListModel.image}"
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
+                android:layout_height="@dimen/dp_160"
                 android:scaleType="centerCrop" />
 
             <TextView
@@ -38,8 +39,9 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="@{cityListModel.name, default=Nothing}"
-                android:textColor="#2d2d2d"
-                android:textSize="13sp" />
+                android:textColor="@color/color_2d2d2d"
+                android:textSize="@dimen/sp_13" />
+
 
         </LinearLayout>
 

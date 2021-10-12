@@ -12,6 +12,10 @@ import com.dennisiluma.openweathermap.repository.WeatherDetailRepository
 import com.dennisiluma.openweathermap.viewmodel.WeatherDetailViewModelFactory
 import com.dennisiluma.openweathermap.viewmodel.WeatherDetailViewModel
 import okhttp3.internal.notify
+import android.app.ProgressDialog
+
+
+
 
 class DetailsActivity : AppCompatActivity() {
 
@@ -28,7 +32,6 @@ class DetailsActivity : AppCompatActivity() {
         val incomingCity = intent.extras
         if (incomingCity != null) {
             city = incomingCity.getString("city").toString()
-            Toast.makeText(this, city, Toast.LENGTH_SHORT).show()
 
             val repository = WeatherDetailRepository()
             val viewModelFactory =
@@ -62,23 +65,24 @@ class DetailsActivity : AppCompatActivity() {
         try {
             viewModel.weatherResponse.observe(this, Observer {
 
-                Toast.makeText(this, "succesfully observed", Toast.LENGTH_SHORT).show()
                 binding.tvCityName.text = it.name.replaceFirstChar {
                     it.uppercaseChar()
                 }
                 val celsius = it.main.temp.toInt() - 273
                 if(celsius % 1 == 0){
-                    binding.progressBar.visibility = View.GONE
+                    binding.indeterminateBar.visibility = View.GONE //Turn off Progress bar
                 }
                 binding.tvTemperature.text = "$celsius °C"
-                binding.tvDescription.text = it.weather[0].description
+                binding.tvDescription.text = it.weather[0].description.replaceFirstChar {
+                    it.uppercaseChar()
+                }
                 binding.tvClouds.text = it.clouds.all.toString()
                 binding.tvWindSpeed.text = it.wind.speed.toString()
                 binding.tvHumidity.text = it.main.humidity.toString()
                 binding.tvLatLong.text = "Lat: ${it.coord.lat}, Long: ${it.coord.lon}"
             })
         } catch (e: Exception) {
-            Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show()
+            Log.e("Error", e.message.toString())
         }
     }
 }

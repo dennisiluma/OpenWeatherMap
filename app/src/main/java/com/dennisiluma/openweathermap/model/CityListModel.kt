@@ -18,7 +18,7 @@ data class CityListModel(
                 Picasso.get()
                     .load(imageUrl)
                     .placeholder(R.drawable.weather)
-                    .error(R.drawable.nice_country)
+                    .error(R.drawable.weath)
                     .into(view)
             }
         }

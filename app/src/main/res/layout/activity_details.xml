@@ -11,7 +11,13 @@
         android:layout_height="wrap_content"
         android:background="@drawable/background"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="@dimen/dp_16">
+
+        <ProgressBar
+            android:id="@+id/indeterminateBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
 
         <TextView
             android:id="@+id/tvCityName"
@@ -19,33 +25,18 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="100dp"
             android:gravity="center"
-            android:text="Luanda"
             android:textColor="@color/white"
-            android:textSize="30sp" />
+            android:textSize="@dimen/sp_30" />
         <!-- adding progress bar -->
-        <ProgressBar
-            android:id="@+id/progress_Bar"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="150dp"
-            android:indeterminate = "true"
-            android:max="100"
-            android:minHeight="50dp"
-            android:visibility="invisible"
-            android:layout_centerInParent="true"
-            android:progress="0"
-            android:layout_marginStart="70dp" />
 
         <TextView
             android:id="@+id/tvTemperature"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="50dp"
+            android:layout_margin="@dimen/dp_50"
             android:gravity="center"
-            android:text="11"
             android:textColor="@color/white"
-            android:textSize="90sp" />
+            android:textSize="@dimen/sp_90" />
 
         <TextView
             android:id="@+id/tvDescription"
@@ -54,26 +45,25 @@
             android:gravity="center"
             android:text="Cloudy"
             android:textColor="@color/white"
-            android:textSize="25sp" />
+            android:textSize="@dimen/sp_25" />
 
         <TextView
             android:id="@+id/tvLatLong"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="@dimen/dp_20"
             android:gravity="center"
-            android:text="20km/h"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="@dimen/sp_20" />
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="20dp"
             android:layout_marginStart="16dp"
-            android:padding="8dp">
+            android:layout_marginTop="@dimen/dp_20"
+            android:orientation="horizontal"
+            android:padding="@dimen/dp_8">
 
             <TextView
                 android:layout_width="match_parent"
@@ -81,27 +71,26 @@
                 android:layout_weight="1"
                 android:text="Clouds"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="@dimen/sp_20" />
 
             <TextView
                 android:id="@+id/tvClouds"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:layout_weight="1"
                 android:gravity="end"
-                android:layout_marginEnd="20dp"
-                android:text="20km/h"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="@dimen/sp_20" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_16"
             android:orientation="horizontal"
-            android:layout_marginStart="16dp"
-            android:padding="8dp">
+            android:padding="@dimen/dp_8">
 
             <TextView
                 android:layout_width="match_parent"
@@ -109,27 +98,26 @@
                 android:layout_weight="1"
                 android:text="Wind Speed"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="@dimen/sp_20" />
 
             <TextView
                 android:id="@+id/tvWindSpeed"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="end"
                 android:layout_marginEnd="20dp"
-                android:text="20km/h"
+                android:layout_weight="1"
+                android:gravity="end"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="@dimen/sp_20" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_16"
             android:orientation="horizontal"
-            android:layout_marginStart="16dp"
-            android:padding="8dp">
+            android:padding="@dimen/dp_8">
 
             <TextView
                 android:layout_width="match_parent"
@@ -137,18 +125,17 @@
                 android:layout_weight="1"
                 android:text="Humidity"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="@dimen/sp_20" />
 
             <TextView
                 android:id="@+id/tvHumidity"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:layout_weight="1"
                 android:gravity="end"
-                android:layout_marginEnd="20dp"
-                android:text="20km/h"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="@dimen/sp_20" />
 
         </LinearLayout>
 

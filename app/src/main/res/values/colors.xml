@@ -11,4 +11,5 @@
     /*Custom colors*/
         <color name="colorPrimary">#4169E1</color>
         <color name="colorPrimaryDark">#4682B4</color>
+    <color name="color_2d2d2d">#2d2d2d</color>
 </resources>

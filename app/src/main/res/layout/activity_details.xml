@@ -7,9 +7,9 @@
     tools:context=".DetailsActivity">
 
     <LinearLayout
+        android:id="@+id/detainLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/background"
         android:orientation="vertical"
         android:padding="@dimen/dp_16">
 

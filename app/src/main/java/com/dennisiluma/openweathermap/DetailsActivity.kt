@@ -71,6 +71,8 @@ class DetailsActivity : AppCompatActivity() {
                 }
                 val celsius = it.main.temp.toInt() - 273 //Here, we are converting to Degree celsius
                 if(celsius % 1 == 0){
+
+                    binding.detainLayout.setBackgroundResource(R.drawable.background)
                     binding.indeterminateBar.visibility = View.GONE //Turn off Progress bar when the values has been received
                 }
                 binding.tvTemperature.text = "$celsius °C"

@@ -1,7 +1,6 @@
 package com.dennisiluma.openweathermap.viewmodel
 
-import android.util.Log
-import android.widget.Toast
+
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.dennisiluma.openweathermap.model.Weather
 import com.dennisiluma.openweathermap.repository.WeatherDetailRepository
 import kotlinx.coroutines.launch
-import okhttp3.Response
 
 class WeatherDetailViewModel(private val repository: WeatherDetailRepository) : ViewModel() {
     private val _response = MutableLiveData<Weather>()

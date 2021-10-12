@@ -9,20 +9,21 @@ import com.dennisiluma.openweathermap.util.DataCountrySource
 
 
 class MainActivity : AppCompatActivity() {
-    private val cityListAdapter by lazy { CityListAdapter(DataCountrySource.createDataSet()) }
 
-    //private var cityListAdapter: CityListAdapter? = null //replace with lazy()
+    private val cityListAdapter by lazy { CityListAdapter(DataCountrySource.createDataSet()) }
     private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        binding.toolbar.title = "Weather App" //set toolbar title
 
+        /*Set ToolBar Title*/
+        binding.toolbar.title = "Weather App"
+        /*SetUp RecyclerView and map to adapter*/
         binding.recyclerView.apply {
             layoutManager = GridLayoutManager(context, 2)
-
             setHasFixedSize(true)
             adapter = cityListAdapter
         }

@@ -3,15 +3,11 @@ package com.dennisiluma.openweathermap.adapter
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.dennisiluma.openweathermap.DetailsActivity
 import com.dennisiluma.openweathermap.databinding.ListItemBinding
 import com.dennisiluma.openweathermap.model.CityListModel
 import kotlin.collections.ArrayList
-import com.dennisiluma.openweathermap.MainActivity
-
-
 
 
 class CityListAdapter(private var list: ArrayList<CityListModel>) :

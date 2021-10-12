@@ -4,15 +4,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.dennisiluma.openweathermap.databinding.ActivityDetailsBinding
 import com.dennisiluma.openweathermap.repository.WeatherDetailRepository
 import com.dennisiluma.openweathermap.viewmodel.WeatherDetailViewModelFactory
 import com.dennisiluma.openweathermap.viewmodel.WeatherDetailViewModel
-import okhttp3.internal.notify
-import android.app.ProgressDialog
 
 
 
@@ -29,19 +26,22 @@ class DetailsActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        sendWeatherApiRequest() //custom method
+        displayWeatherResult() //custom method
+        instantiateViewModel() //custom method
+    }
+
+    private fun instantiateViewModel(){
+        //collect intent extra bundle coming from mainActivity
         val incomingCity = intent.extras
-        if (incomingCity != null) {
+        if (incomingCity != null) { // if there's intent, then proceed
             city = incomingCity.getString("city").toString()
-
-            val repository = WeatherDetailRepository()
-            val viewModelFactory =
-                WeatherDetailViewModelFactory(
-                    repository
-                )
-            viewModel =
-                ViewModelProvider(this, viewModelFactory).get(WeatherDetailViewModel::class.java)
+            val repository = WeatherDetailRepository() //Instantiate the Weather Repository
+            val viewModelFactory = WeatherDetailViewModelFactory(repository) // Instantiate ViewModel Factory
+            viewModel = ViewModelProvider(this, viewModelFactory).get(WeatherDetailViewModel::class.java) //Instantiate the viewmodel
         }
-
+    }
+    private fun sendWeatherApiRequest(){
         when(city){
             "lagos" -> viewModel.getLagosWeather()
             "kenya" -> viewModel.getKenyaWeather()
@@ -60,17 +60,18 @@ class DetailsActivity : AppCompatActivity() {
             "bagdad"-> viewModel.getBagdadWeather()
             "westham"-> viewModel.getWesthamWeather()
         }
-
-        binding.tvCityName.text = city
+    }
+    private fun displayWeatherResult(){
+        /*Here, we are collecting our weather values from the live data in our viewmodel and diaplaying it to the user*/
         try {
             viewModel.weatherResponse.observe(this, Observer {
 
                 binding.tvCityName.text = it.name.replaceFirstChar {
                     it.uppercaseChar()
                 }
-                val celsius = it.main.temp.toInt() - 273
+                val celsius = it.main.temp.toInt() - 273 //Here, we are converting to Degree celsius
                 if(celsius % 1 == 0){
-                    binding.indeterminateBar.visibility = View.GONE //Turn off Progress bar
+                    binding.indeterminateBar.visibility = View.GONE //Turn off Progress bar when the values has been received
                 }
                 binding.tvTemperature.text = "$celsius °C"
                 binding.tvDescription.text = it.weather[0].description.replaceFirstChar {

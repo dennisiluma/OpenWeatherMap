@@ -20,3 +20,5 @@ An Android Weather App where you can check weather from list of selected cities.
 7- LiveData
 
 8- Retrofit 2
+
+# NOTE: All Logic and Implementations are on working-branch

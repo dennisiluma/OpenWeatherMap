@@ -28,7 +28,7 @@ class DetailsActivity : AppCompatActivity() {
         /*collect intent extra bundle coming from mainActivity*/
         city = intent.extras!!.getString("city").toString()
 
-        instantiateViewModel() // method where viewmodels are being initialized
+        instantiateViewModel() // method where viewmodel are being initialized
         sendWeatherApiRequest() //method to send weather api get request
         displayWeatherResult() //methods where logic for displaying result to users is done
     }

@@ -1,4 +1,4 @@
-package com.dennisiluma.openweathermap
+package com.dennisiluma.openweathermap.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.dennisiluma.openweathermap.R
 import com.dennisiluma.openweathermap.databinding.ActivityDetailsBinding
 import com.dennisiluma.openweathermap.repository.WeatherDetailRepository
 import com.dennisiluma.openweathermap.viewmodel.WeatherDetailViewModelFactory

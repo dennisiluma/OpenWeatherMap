@@ -1,4 +1,4 @@
-package com.dennisiluma.openweathermap
+package com.dennisiluma.openweathermap.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

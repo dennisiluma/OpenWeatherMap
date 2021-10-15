@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".DetailsActivity">
+    tools:context=".view.DetailsActivity">
 
     <LinearLayout
         android:id="@+id/detainLayout"

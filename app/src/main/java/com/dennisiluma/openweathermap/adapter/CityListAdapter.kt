@@ -4,7 +4,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.dennisiluma.openweathermap.DetailsActivity
+import com.dennisiluma.openweathermap.view.DetailsActivity
 import com.dennisiluma.openweathermap.databinding.ListItemBinding
 import com.dennisiluma.openweathermap.model.CityListModel
 import kotlin.collections.ArrayList

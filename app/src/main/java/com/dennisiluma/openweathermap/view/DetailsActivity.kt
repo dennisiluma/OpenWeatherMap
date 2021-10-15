@@ -1,9 +1,12 @@
 package com.dennisiluma.openweathermap.view
 
+import android.content.Context
+import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.dennisiluma.openweathermap.R
@@ -41,23 +44,31 @@ class DetailsActivity : AppCompatActivity() {
         }
     }
     private fun sendWeatherApiRequest(){
-        when(city){
-            "lagos" -> viewModel.getLagosWeather()
-            "kenya" -> viewModel.getKenyaWeather()
-            "cairo" -> viewModel.getCairoWeather()
-            "Abuja" -> viewModel.getAbujaWeather()
-            "new york" -> viewModel.getNYWeather()
-            "texas"-> viewModel.getTexasWeather()
-            "amazon"-> viewModel.getAmazonWeather()
-            "belarus"-> viewModel.getBelarusWeather()
-            "lesotho"-> viewModel.getLesothoWeather()
-            "jakarta"-> viewModel.getJakartaWeather()
-            "ankara"-> viewModel.getAnkaraWeather()
-            "kano"-> viewModel.getKanoWeather()
-            "peru"-> viewModel.getPeruWeather()
-            "winnipeg"-> viewModel.getWinnipegWeather()
-            "bagdad"-> viewModel.getBagdadWeather()
-            "westham"-> viewModel.getWesthamWeather()
+        /*Manage network */
+        val connectionManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = connectionManager.activeNetworkInfo
+        if (networkInfo != null && networkInfo.isConnected) {
+
+            when(city){
+                "lagos" -> viewModel.getLagosWeather()
+                "kenya" -> viewModel.getKenyaWeather()
+                "cairo" -> viewModel.getCairoWeather()
+                "Abuja" -> viewModel.getAbujaWeather()
+                "new york" -> viewModel.getNYWeather()
+                "texas"-> viewModel.getTexasWeather()
+                "amazon"-> viewModel.getAmazonWeather()
+                "belarus"-> viewModel.getBelarusWeather()
+                "lesotho"-> viewModel.getLesothoWeather()
+                "jakarta"-> viewModel.getJakartaWeather()
+                "ankara"-> viewModel.getAnkaraWeather()
+                "kano"-> viewModel.getKanoWeather()
+                "peru"-> viewModel.getPeruWeather()
+                "winnipeg"-> viewModel.getWinnipegWeather()
+                "bagdad"-> viewModel.getBagdadWeather()
+                "westham"-> viewModel.getWesthamWeather()
+            }
+        } else {
+            Toast.makeText(this, "Network Not Available", Toast.LENGTH_LONG).show()
         }
     }
     private fun displayWeatherResult(){

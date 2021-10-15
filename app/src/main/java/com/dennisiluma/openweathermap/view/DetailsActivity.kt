@@ -2,11 +2,14 @@ package com.dennisiluma.openweathermap.view
 
 import android.content.Context
 import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.dennisiluma.openweathermap.R
@@ -36,42 +39,74 @@ class DetailsActivity : AppCompatActivity() {
         displayWeatherResult() //methods where logic for displaying result to users is done
     }
 
-    private fun instantiateViewModel(){
+    private fun instantiateViewModel() {
         if (city != null) { // if there's intent, then proceed
             val repository = WeatherDetailRepository() //Instantiate the Weather Repository
-            val viewModelFactory = WeatherDetailViewModelFactory(repository) // Instantiate ViewModel Factory
-            viewModel = ViewModelProvider(this, viewModelFactory).get(WeatherDetailViewModel::class.java) //Instantiate the viewmodel
+            val viewModelFactory =
+                WeatherDetailViewModelFactory(repository) // Instantiate ViewModel Factory
+            viewModel = ViewModelProvider(
+                this,
+                viewModelFactory
+            ).get(WeatherDetailViewModel::class.java) //Instantiate the viewmodel
         }
     }
-    private fun sendWeatherApiRequest(){
-        /*Manage network */
-        val connectionManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val networkInfo = connectionManager.activeNetworkInfo
-        if (networkInfo != null && networkInfo.isConnected) {
 
-            when(city){
+    private val isNetworkAvailable: Boolean
+        get() {
+            val connectivityManager =
+                getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                val capabilities =
+                    connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+                if (capabilities != null) {
+                    when {
+                        capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> {
+                            return true
+                        }
+                        capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> {
+                            return true
+                        }
+                        capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> {
+                            return true
+                        }
+                    }
+                }
+            }
+            return false
+        }
+
+    private fun sendWeatherApiRequest() {
+        if (!isNetworkAvailable) {
+            AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Internet Connection Alert")
+                .setMessage("Please Check Your Internet Connection")
+                .setPositiveButton(
+                    "Close"
+                ) { dialogInterface, i -> finish() }.show()
+        } else if (isNetworkAvailable) {
+            when (city) {
                 "lagos" -> viewModel.getLagosWeather()
                 "kenya" -> viewModel.getKenyaWeather()
                 "cairo" -> viewModel.getCairoWeather()
                 "Abuja" -> viewModel.getAbujaWeather()
                 "new york" -> viewModel.getNYWeather()
-                "texas"-> viewModel.getTexasWeather()
-                "amazon"-> viewModel.getAmazonWeather()
-                "belarus"-> viewModel.getBelarusWeather()
-                "lesotho"-> viewModel.getLesothoWeather()
-                "jakarta"-> viewModel.getJakartaWeather()
-                "ankara"-> viewModel.getAnkaraWeather()
-                "kano"-> viewModel.getKanoWeather()
-                "peru"-> viewModel.getPeruWeather()
-                "winnipeg"-> viewModel.getWinnipegWeather()
-                "bagdad"-> viewModel.getBagdadWeather()
-                "westham"-> viewModel.getWesthamWeather()
+                "texas" -> viewModel.getTexasWeather()
+                "amazon" -> viewModel.getAmazonWeather()
+                "belarus" -> viewModel.getBelarusWeather()
+                "lesotho" -> viewModel.getLesothoWeather()
+                "jakarta" -> viewModel.getJakartaWeather()
+                "ankara" -> viewModel.getAnkaraWeather()
+                "kano" -> viewModel.getKanoWeather()
+                "peru" -> viewModel.getPeruWeather()
+                "winnipeg" -> viewModel.getWinnipegWeather()
+                "bagdad" -> viewModel.getBagdadWeather()
+                "westham" -> viewModel.getWesthamWeather()
             }
-        } else {
-            Toast.makeText(this, "Network Not Available", Toast.LENGTH_LONG).show()
         }
     }
-    private fun displayWeatherResult(){
+
+    private fun displayWeatherResult() {
         /*Here, we are collecting our weather values from the live data in our viewmodel and diaplaying it to the user*/
         try {
             viewModel.weatherResponse.observe(this, Observer {
@@ -80,10 +115,11 @@ class DetailsActivity : AppCompatActivity() {
                     it.uppercaseChar()
                 }
                 val celsius = it.main.temp.toInt() - 273 //Here, we are converting to Degree celsius
-                if(celsius % 1 == 0){
+                if (celsius % 1 == 0) {
 
                     binding.detainLayout.setBackgroundResource(R.drawable.background)
-                    binding.indeterminateBar.visibility = View.GONE //Turn off Progress bar when the values has been received
+                    binding.indeterminateBar.visibility =
+                        View.GONE //Turn off Progress bar when the values has been received
                 }
                 binding.tvTemperature.text = "$celsius °C"
                 binding.tvDescription.text = it.weather[0].description.replaceFirstChar {

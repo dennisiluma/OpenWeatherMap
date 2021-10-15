@@ -51,6 +51,7 @@ class DetailsActivity : AppCompatActivity() {
         }
     }
 
+    // function that Check network availability
     private val isNetworkAvailable: Boolean
         get() {
             val connectivityManager =
@@ -84,7 +85,7 @@ class DetailsActivity : AppCompatActivity() {
                 .setPositiveButton(
                     "Close"
                 ) { dialogInterface, i -> finish() }.show()
-        } else if (isNetworkAvailable) {
+        } else {
             when (city) {
                 "lagos" -> viewModel.getLagosWeather()
                 "kenya" -> viewModel.getKenyaWeather()

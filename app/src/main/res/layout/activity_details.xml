@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
+    android:background="@color/colorPrimary"
     tools:context=".view.DetailsActivity">
 
     <LinearLayout
@@ -20,6 +21,7 @@
             android:layout_height="match_parent"
             android:elevation="20dp"
             android:indeterminate="true"
+            android:visibility="visible"
             android:indeterminateDrawable="@drawable/custom_progressbar"
             />
 

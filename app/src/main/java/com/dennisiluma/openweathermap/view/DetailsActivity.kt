@@ -13,8 +13,6 @@ import com.dennisiluma.openweathermap.viewmodel.WeatherDetailViewModelFactory
 import com.dennisiluma.openweathermap.viewmodel.WeatherDetailViewModel
 
 
-
-
 class DetailsActivity : AppCompatActivity() {
 
     lateinit var viewModel: WeatherDetailViewModel
@@ -30,9 +28,9 @@ class DetailsActivity : AppCompatActivity() {
         /*collect intent extra bundle coming from mainActivity*/
         city = intent.extras!!.getString("city").toString()
 
-        instantiateViewModel() //custom method
-        sendWeatherApiRequest() //custom method
-        displayWeatherResult() //custom method
+        instantiateViewModel() // method where viewmodels are being initialized
+        sendWeatherApiRequest() //method to send weather api get request
+        displayWeatherResult() //methods where logic for displaying result to users is done
     }
 
     private fun instantiateViewModel(){

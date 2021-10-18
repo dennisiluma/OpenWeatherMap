@@ -1,7 +1,7 @@
 # OpenWeatherMap
 
 
-An Android Weather App where you can check weather from list of selected cities. It was built with mvvm, dagger-hilt, livedata,coroutines, jetpack libraries...
+An Android Weather App where you can check current weather condition from a list of selected cities. It was built using the mvvm architecture
 
 # Features
 
